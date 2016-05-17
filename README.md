@@ -75,3 +75,6 @@ The code for a word boundary (space) is 9999.
 The codes for preceding pause is 9009, for folowing pause it is 9000 (the
 latter has a 0 on position 4, so it can work for final devoicing just like
 voiceless sounds do.
+
+TODO:
+Provide correct external documentation and comments within the script.
