@@ -828,10 +828,8 @@ for i from 1 to items
 				if nextPhoneValue = 9999
 				... and rindex (string$ (nextNextPhoneValue), "2") <> 5
 				... and show_assimilation = 1
-					ipaPhonePozn$ = backslashTrigraphsToUnicode$
-					... (ipa'phoneValue'$)
-					ipaNextPhonePozn$ = backslashTrigraphsToUnicode$
-					... (ipa'nextNextPhoneValue'$)
+					ipaPhonePozn$ = ipa'phoneValue'$
+					ipaNextPhonePozn$ = ipa'nextNextPhoneValue'$
 					appendInfoLine: i + 1, ": /", ipaPhonePozn$, "/ + /",
 					... ipaNextPhonePozn$, "/ is realized as [", ipaPhonePozn$,
 					... " + ", ipaNextPhonePozn$, "]"
@@ -852,11 +850,9 @@ for i from 1 to items
 				... and rindex (string$ (nextNextPhoneValue), "2") <> 5
 				... and show_assimilation = 1
 					v = phoneValue + 10
-					ipaPhonePozn$ = backslashTrigraphsToUnicode$
-					... (ipa'phoneValue'$)
-					ipaPhonePoznVoiced$ = backslashTrigraphsToUnicode$ (ipa'v'$)
-					ipaNextPhonePozn$ = backslashTrigraphsToUnicode$
-					... (ipa'nextNextPhoneValue'$)
+					ipaPhonePozn$ = ipa'phoneValue'$
+					ipaPhonePoznVoiced$ = ipa'v'$
+					ipaNextPhonePozn$ = ipa'nextNextPhoneValue'$
 					appendInfoLine: i + 1, ": /", ipaPhonePozn$, "/ + /",
 					... ipaNextPhonePozn$, "/ became [", ipaPhonePoznVoiced$,
 					... " + ", ipaNextPhonePozn$, "]"
@@ -1020,10 +1016,7 @@ for i from 1 to items
 		endif
 
 		ipa$ = ipaPhoneValue$ + ipa$
-		ipa$ = backslashTrigraphsToUnicode$ (ipa$)
-
 		as$ = asPhoneValue$ + as$
-		as$ = backslashTrigraphsToUnicode$ (as$)
 	endfor
 
 		# Write the IPA transcription in the table:
@@ -1049,13 +1042,13 @@ endif
 if folder = 1
 	fileSave$ = "'origFolder$''fileName$'_transcribed.csv"
 	Save as 'separator$'-separated file: fileSave$
-	writeInfoLine: "Saved as ", fileSave$
+	appendInfoLine: "Saved as ", fileSave$
 else
 	fileSave$ = chooseWriteFile$: "Save as a 'separator$'-separated file",
 	... "'fileName$'_transcribed.csv"
 	if fileSave$ <> ""
 		Save as 'separator$'-separated file: fileSave$
-		writeInfoLine: "Saved as ", fileSave$
+		appendInfoLine: "Saved as ", fileSave$
 	endif
 endif
 
